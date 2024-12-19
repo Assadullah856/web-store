@@ -20,6 +20,7 @@ import { Link } from "react-router-dom";
 import DrawerItems from "../Drawer/DrawerItems";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useSelector } from "react-redux";
+
  
 
 interface Props {
@@ -36,7 +37,7 @@ function Header(props: Props) {
   const open = Boolean(anchorEl);
 
   const [openItems, setOpenItems] = React.useState(false);
-  const {count} = useSelector((state)=> state.counter)
+  const {Cartitem} = useSelector((state)=> state.Cart)
   // console.log(ItemCounter , "ItemCounter");
   
   const toggleOpenItems = (newOpen) => () => {
@@ -93,7 +94,7 @@ function Header(props: Props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            E-Stor
+            E-Store
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
@@ -103,7 +104,7 @@ function Header(props: Props) {
             ))}
 
             <Button>
-              <Badge badgeContent={count} color="error">
+              <Badge badgeContent={Cartitem?.length} color="error">
                  <ShoppingCartIcon onClick={toggleOpenItems(true)} className="text-white" />
               </Badge>
               
